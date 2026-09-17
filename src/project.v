@@ -17,7 +17,7 @@ module tt_um_example (
 );
 
   // List all unused inputs to prevent warnings
-  reg [7:0] counter;
+  reg [319:0] counter;
   wire load;
   assign load = uio_in[0];
 
@@ -25,13 +25,13 @@ module tt_um_example (
     if (!rst_n) begin
       counter <= 0;
     end else begin
-      if (load) counter <= ui_in;
+      if (load) counter[7:0] <= ui_in;
       else counter <= counter+1;
     end
   end
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ena ? counter : 8'bz;  // Example: ou_out is the sum of ui_in and uio_in
+  assign uo_out  = ena ? counter[7:0] : 8'bz;  // Example: ou_out is the sum of ui_in and uio_in
   assign uio_out = 0;
   assign uio_oe  = 0;
 
