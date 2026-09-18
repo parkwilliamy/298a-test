@@ -46,10 +46,10 @@ module tt_um_example (
   // counter whose upper bits never reach an output pin is deleted by Yosys as
   // dead logic, which is why widening `counter` to 320 bits did not show the
   // real cost.
-  localparam DEPTH = 30;
+  localparam DEPTH = 35;
 
   wire       we      = mode & uio_in[6];
-  wire [4:0] addr    = uio_in[4:0];
+  wire [5:0] addr    = uio_in[5:0];
   wire       addr_ok = (addr < DEPTH);
 
   reg [7:0] mem [0:DEPTH-1];
